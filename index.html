@@ -9,7 +9,7 @@
   </head>
   <body>
     <!-- <model-viewer> HTML element -->
-    <model-viewer src="Untitled.glb" ar ar-modes="scene-viewer webxr quick-look" camera-controls tone-mapping="neutral" poster="poster.png" shadow-intensity="1" camera-orbit="-13.95deg 83.37deg 1.325m" field-of-view="30deg" id="gear">
+    <model-viewer src="multianimation.glb" ar ar-modes="scene-viewer webxr quick-look" camera-controls tone-mapping="neutral" poster="poster.png" shadow-intensity="1" animation-name="Left doorAction" camera-orbit="-29.3deg 79.88deg 1.25m" field-of-view="30deg" auto-rotate id="gear">
       <div class="progress-bar hide" slot="progress-bar">
           <div class="update-bar"></div>
       </div>
@@ -19,22 +19,39 @@
       <div id="ar-prompt">
           <img src="ar_hand_prompt.png">
       </div>
-
-<div style="position:absolute; bottom:0px; right:0px">
-  <button onClick="playModel()">click to play
+  <div class="controls" style="position: absolute; bottom: 0px; left: 200px"
+  <div>Animation:
+  <button id="default1Btn" onClick="Btn01()">Play Animation 01
+  </button>
+  <button id="default2Btn" onClick="Btn02()">Play Animation 02
+  </button>
+  <button id="default3Btn" onClick="Btn03()">Play Animation 03
+  </button>
+  <button id="pauseBtn" onClick="pauseAnimation()">Pause Animation
   </button>
   </div>
-    </model-viewer> 
-
+  </div>
+    </model-viewer>  
+ <script src="script.js"></script>
 <script>
+  function Btn01()
+  {document.getElementById('gear').pause();
+  document.getElementById('gear').animationName = "Front doorAction";
+  document.getElementById('gear').play(); }
 
-  function playModel()
+  function Btn02()
+  {document.getElementById('gear').pause();
+  document.getElementById('gear').animationName = "right doorAction";
+  document.getElementById('gear').play(); }
 
-  {document.getElementById('gear').play({ repetitions: 0, pingpong: true});}  </script>
+  function Btn03()
+  {document.getElementById('gear').pause();
+  document.getElementById('gear').animationName = "Left doorAction";
+  document.getElementById('gear').play(); }
 
-
- 
-    <script src="script.js"></script>
+  function pauseAnimation()
+  { document.getElementById('gear').pause(); }
+  </script>
     <!-- Loads <model-viewer> for browsers: -->
     <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
   </body>
